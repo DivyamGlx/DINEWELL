@@ -38,7 +38,6 @@ Stores student details.
 Stores mess information.
 - Mess Name
 - Capacity
-- Location
 
 ---
 
