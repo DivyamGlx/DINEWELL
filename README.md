@@ -731,9 +731,13 @@ POST /api/benchmark/optimize             — Trigger B+ Tree optimization
 ## 👥 Team
 
 **IIT Gandhinagar — DBMS Course Project - Data Hunters, 2026**
-Divyam Sahu - Github Uploading, Module A and B codes, video demonstration
+
+Divyam Sahu - Github Uploading, Module A and B codes, video demonstration, Debugging
+
 Pratishtha Chourasia - Report Writing
+
 Ganesh and Anil Kumar- Module B zip file  
+
 Simran - Brainstorming
 
 
