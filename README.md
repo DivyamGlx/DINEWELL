@@ -522,7 +522,7 @@ Add this at the top of your notebook:
   sys.path.insert(0, os.path.abspath('.'))
 Make sure you launched Jupyter from inside Module_A/ folder.
 ```
-# 🍽️ DINEWELL — Mess Management System
+# Module B - 🍽️ DINEWELL — Mess Management System
 ### IIT Gandhinagar | DBMS Course Project
 
 A full-stack mess management web application for IIT Gandhinagar built with **Node.js**, **React**, **TypeScript**, and **SQLite**. The project demonstrates core DBMS concepts including schema design, indexing, role-based access control, audit logging, and B+ Tree integration for performance benchmarking.
