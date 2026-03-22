@@ -522,6 +522,220 @@ Add this at the top of your notebook:
   sys.path.insert(0, os.path.abspath('.'))
 Make sure you launched Jupyter from inside Module_A/ folder.
 ```
+# 🍽️ DINEWELL — Mess Management System
+### IIT Gandhinagar | DBMS Course Project
+
+A full-stack mess management web application for IIT Gandhinagar built with **Node.js**, **React**, **TypeScript**, and **SQLite**. The project demonstrates core DBMS concepts including schema design, indexing, role-based access control, audit logging, and B+ Tree integration for performance benchmarking.
+
+---
+
+## 📁 Project Structure
+
+```
+DINEWELL/
+├── src/
+│   ├── pages/
+│   │   ├── Dashboard.tsx         # Main overview after login
+│   │   ├── MessDetails.tsx       # Mess info and allotment view
+│   │   ├── Feedback.tsx          # Student feedback submission
+│   │   ├── AdminStudents.tsx     # Admin panel (B+ Tree powered)
+│   │   ├── AuditLogs.tsx         # Admin-only activity log viewer
+│   │   ├── Performance.tsx       # Index benchmarking dashboard
+│   │   ├── Login.tsx             # JWT Authentication
+│   │   └── Portfolio.tsx         # Project info page
+│   ├── components/
+│   │   └── Layout.tsx            # Shared layout wrapper
+│   ├── context/
+│   │   └── AuthContext.tsx       # JWT auth state management
+│   ├── utils/
+│   │   └── BPlusTree.ts          # Custom B+ Tree implementation
+│   ├── db/
+│   │   ├── schema.sql            # Full SQLite schema
+│   │   └── seed.sql              # Seed data
+│   └── db.ts                     # Database connection
+├── server.ts                     # Express backend + all API routes
+├── indexcompare/
+│   └── index_comparison.ipynb   # Before vs After indexing analysis
+├── dinewell_v7.db                # SQLite database
+├── access.log                    # Log captured AFTER indexing
+├── bef.log                       # Log captured BEFORE indexing
+└── vite.config.ts
+```
+
+---
+
+## 🚀 Getting Started
+
+**Prerequisites:** Node.js
+
+**1. Install dependencies:**
+```bash
+npm install
+```
+
+**2. Set up environment variables** — copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+The default `.env.example` already has a development JWT secret set.
+
+**3. Run the app:**
+```bash
+npm run dev
+```
+
+The app starts at `http://localhost:5173` (Vite frontend) and the backend API runs on `http://localhost:3000`.
+
+---
+
+## 🗄️ Database Schema
+
+The SQLite database covers the full mess management lifecycle across **four messes** (Jaiswal, Mohani, Rgorus, Bhopal):
+
+| Table | Purpose |
+|---|---|
+| `Students` | Student profiles with roll number, year, email |
+| `Messes` | Four mess entities with capacity |
+| `Staff` | Mess staff with roles (manager, cook, attendant) |
+| `Meals` | Four meal types: breakfast, lunch, hi-tea, dinner |
+| `Student_Mess_Allotment` | Active/expired allotments per student |
+| `QR_Codes` | QR code data per student for meal scanning |
+| `Attendance` | Meal-level scan records (present/absent) |
+| `Wastage` | Food wastage tracking per student |
+| `Transactions` | Guest meal billing with auto-generated bill numbers |
+| `Bills` | Monthly bill generation with due amount (computed column) |
+| `Complaints` | Student complaints with resolution tracking |
+| `Mess_Change_Requests` | Pending/approved/rejected mess change requests |
+| `Admin_Users` | Superadmin and mess manager accounts |
+| `audit_log` | Full action history across all tables |
+| `users` | App authentication bridge (admin + student roles) |
+
+A trigger auto-generates bill numbers (`BILL0001`, `BILL0002`, ...) on every transaction insert.
+
+---
+
+## 🔐 Authentication & RBAC
+
+- JWT-based login via `/api/auth/login`
+- Two roles: **superadmin** (full access) and **mess_manager** / **student** (scoped access)
+- Audit log endpoint returns `403` for non-admin users
+- All actions are recorded in the `audit_log` table with user, timestamp, table name, and old/new values
+
+---
+
+## 🌳 B+ Tree Integration
+
+A custom **B+ Tree** (`src/utils/BPlusTree.ts`) is implemented and integrated into the student lookup pipeline. This replaces a sequential scan on the `Students` table with an O(log n) indexed lookup — the core DBMS concept being demonstrated.
+
+The B+ tree is used in the `/api/admin/bplus-students` endpoint, which powers the Admin Students page.
+
+---
+
+## 📊 Index Performance Analysis
+
+The `indexcompare/` folder contains a Jupyter notebook that quantifies the performance improvement from adding database indexes.
+
+### How it was measured
+
+Two sets of real HTTP request logs were captured from the running server:
+
+- `bef.log` — captured **before** indexes were applied (sequential scans)
+- `access.log` — captured **after** indexes were applied
+
+The notebook parses both logs, extracts all `/api/` endpoint response times, and produces a statistical comparison.
+
+### Metrics computed per endpoint
+
+| Metric | Description |
+|---|---|
+| Count | Total requests captured |
+| Mean (ms) | Raw average response time |
+| Robust Mean (ms) | IQR-filtered mean (excludes outliers) |
+| Median (ms) | 50th percentile |
+| 95th Percentile (ms) | Tail latency |
+| Max / Min (ms) | Extremes |
+| Improvement (ms) | `RobustMean_Before − RobustMean_After` |
+| Improvement (%) | Relative speedup |
+
+### Endpoints benchmarked
+
+```
+GET  /api/mess
+GET  /api/feedback
+GET  /api/admin/earnings
+GET  /api/admin/bplus-students
+GET  /api/audit-logs
+GET  /api/users/:id
+POST /api/auth/login
+POST /api/feedback
+POST /api/admin/bplus-students/update
+POST /api/benchmark/optimize
+```
+
+### Charts generated
+
+**1. Bar Chart — Robust Mean Before vs After**
+Side-by-side red/green bars per endpoint showing the raw time difference.
+
+**2. Improvement % Chart**
+Green = endpoint got faster after indexing. Red = slower (regression).
+
+**3. Per-Endpoint Time Series**
+Overlaid Before (red) and After (green) line plots for each endpoint, showing request-by-request response time trends.
+
+### Running the notebook
+
+```bash
+pip install pandas numpy matplotlib jupyter
+jupyter notebook indexcompare/index_comparison.ipynb
+```
+
+Make sure `bef.log` and `access.log` (or your own log files) are in the same directory as the notebook, then update the config cell:
+```python
+BEFORE_LOG = "bef.log"
+AFTER_LOG  = "access.log"
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 18 + TypeScript + Vite |
+| Backend | Node.js + Express + TypeScript |
+| Database | SQLite (better-sqlite3) |
+| Auth | JWT (jsonwebtoken) |
+| Styling | CSS (index.css) |
+| Analysis | Python, Pandas, NumPy, Matplotlib |
+
+---
+
+## 📡 Key API Endpoints
+
+```
+POST /api/auth/login                     — Login, returns JWT
+GET  /api/mess                           — List all messes
+GET  /api/feedback                       — Get feedback entries
+POST /api/feedback                       — Submit feedback
+GET  /api/admin/earnings                 — Mess earnings (admin)
+GET  /api/admin/bplus-students           — Students via B+ Tree index
+POST /api/admin/bplus-students/update    — Update student record
+GET  /api/users/:id                      — Get user by ID
+GET  /api/audit-logs                     — Full audit log (superadmin only)
+POST /api/benchmark/optimize             — Trigger B+ Tree optimization
+```
+
+---
+
+## 👥 Team
+
+**IIT Gandhinagar — DBMS Course Project - Data Hunters, 2026**
+Divyam Sahu - Github Uploading, Module A and B codes, video demonstration
+Pratishtha Chourasia - Report Writing
+Ganesh and Anil Kumar- Module B zip file  
+Simran - Brainstorming
+
 
 
 ## Run Locally
