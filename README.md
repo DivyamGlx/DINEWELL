@@ -373,7 +373,8 @@ ARIES recovery would be faster for large WAL files.
 Transactions only span tables within one DatabaseManager instance.
 Cross-process or network transactions are not supported.
 
----# Assignment 3 — Module B: Concurrent Workload & Stress Testing
+---
+# Assignment 3 — Module B: Concurrent Workload & Stress Testing
 
 ---
 
