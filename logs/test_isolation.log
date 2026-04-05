@@ -1,0 +1,8 @@
+{"type": "TXN_START", "txn_id": 1, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:34.913339"}
+{"type": "TXN_START", "txn_id": 2, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:34.914123"}
+{"type": "INSERT", "txn_id": 1, "table": "Students", "key": 501, "old_value": null, "new_value": {"student_id": 501, "name": "Aditya Kumar", "roll_no": "23110501", "mobile": "9876545001", "year": "4th", "email": "aditya@iitgn.ac.in"}, "timestamp": "2026-04-05T15:43:34.914123"}
+{"type": "INSERT", "txn_id": 2, "table": "Students", "key": 502, "old_value": null, "new_value": {"student_id": 502, "name": "Bhavna Rao", "roll_no": "23110502", "mobile": "9876545002", "year": "2nd", "email": "bhavna@iitgn.ac.in"}, "timestamp": "2026-04-05T15:43:34.918378"}
+{"type": "INSERT", "txn_id": 1, "table": "Student_Mess_Allotment", "key": 601, "old_value": null, "new_value": {"allotment_id": 601, "student_id": 501, "mess_id": 1, "start_date": "2026-01-01", "end_date": "2026-06-30", "status": "active"}, "timestamp": "2026-04-05T15:43:34.919385"}
+{"type": "INSERT", "txn_id": 2, "table": "Student_Mess_Allotment", "key": 602, "old_value": null, "new_value": {"allotment_id": 602, "student_id": 502, "mess_id": 2, "start_date": "2026-01-01", "end_date": "2026-06-30", "status": "active"}, "timestamp": "2026-04-05T15:43:34.920385"}
+{"type": "COMMIT", "txn_id": 1, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:34.920385"}
+{"type": "COMMIT", "txn_id": 2, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:34.921996"}

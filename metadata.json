@@ -1,0 +1,5 @@
+{
+  "name": "DINEWELL - IITGN Mess Management",
+  "description": "A comprehensive mess management system for IIT Gandhinagar with RBAC, audit logging, and performance benchmarking.",
+  "requestFramePermissions": []
+}

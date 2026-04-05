@@ -1,0 +1,17 @@
+{
+  "name": "dinewell-stress-tests",
+  "version": "1.0.0",
+  "description": "Stress and Concurrency Testing Suite for DineWell API",
+  "main": "run_all_tests.js",
+  "scripts": {
+    "test": "node run_all_tests.js",
+    "test:concurrent": "node tests/concurrent/test_concurrent_users.js",
+    "test:race": "node tests/concurrent/test_race_condition.js",
+    "test:failure": "node tests/concurrent/test_failure_simulation.js",
+    "test:stress": "node tests/stress/test_stress.js",
+    "test:stress:heavy": "node tests/stress/test_stress.js --level heavy"
+  },
+  "dependencies": {
+    "axios": "^1.6.2"
+  }
+}

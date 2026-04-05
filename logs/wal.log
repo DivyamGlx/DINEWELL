@@ -1,0 +1,6 @@
+{"type": "TXN_START", "txn_id": 1, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:27.202629"}
+{"type": "INSERT", "txn_id": 1, "table": "Complaints", "key": 1, "old_value": null, "new_value": {"complaint_id": 1, "student_id": 101, "mess_id": 1, "subject": "Cold food served", "message": "Dinner was served cold on Monday.", "status": "pending"}, "timestamp": "2026-04-05T15:43:27.202629"}
+{"type": "COMMIT", "txn_id": 1, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:27.204666"}
+{"type": "TXN_START", "txn_id": 2, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:27.204666"}
+{"type": "UPDATE", "txn_id": 2, "table": "Complaints", "key": 1, "old_value": {"complaint_id": 1, "student_id": 101, "mess_id": 1, "subject": "Cold food served", "message": "Dinner was served cold on Monday.", "status": "pending"}, "new_value": {"complaint_id": 1, "student_id": 101, "mess_id": 1, "subject": "Cold food served", "message": "Dinner was served cold on Monday.", "status": "resolved"}, "timestamp": "2026-04-05T15:43:27.204666"}
+{"type": "COMMIT", "txn_id": 2, "table": null, "key": null, "old_value": null, "new_value": null, "timestamp": "2026-04-05T15:43:27.204666"}

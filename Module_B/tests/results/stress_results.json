@@ -1,0 +1,34 @@
+{
+  "level1": {
+    "passed": true,
+    "metrics": {
+      "total": 50,
+      "success": 50,
+      "failed": 0,
+      "successRate": "100.0",
+      "avg": "41.7",
+      "min": 19,
+      "max": 49,
+      "p95": 47
+    }
+  },
+  "level2": {
+    "passed": true,
+    "metrics": {
+      "total": 200,
+      "success": 200,
+      "failed": 0,
+      "successRate": "100.0",
+      "avg": "196.0",
+      "min": 36,
+      "max": 457,
+      "p95": 449
+    }
+  },
+  "level3": {
+    "passed": true,
+    "metrics": {
+      "note": "skipped"
+    }
+  }
+}

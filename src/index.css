@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-sage: #4A7C59;
+  --color-sage-dark: #3D664A;
+  --color-terracotta: #E07A5F;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F9F9F9] text-[#1F2937] font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+}
+
+.glass-header {
+  @apply sticky top-0 z-40 backdrop-blur-md bg-white/80 border-b border-gray-100;
+}
