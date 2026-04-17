@@ -2,7 +2,7 @@
 
 > **CS 432 – Databases | Assignment 4 | Track 1**
 > IIT Gandhinagar | Semester II (2025–2026)
-> Instructor: Dr. Yogesh K. Meena | Deadline: 18 April 2026
+> Instructor: Dr. Yogesh K. Meena 
 
 ---
 
@@ -10,7 +10,7 @@
 
 | 🔗 GitHub Repository | 🎥 Video Demonstration |
 |:---:|:---:|
-| [Repository Link]([https://github.com/your-repo-link](https://github.com/DivyamGlx/DINEWELL/tree/Sharding)) | [Video Link](https://youtu.be/your-video-link) |
+| [Repository Link](https://github.com/DivyamGlx/DINEWELL/tree/Sharding) | [Video Link](https://youtu.be/your-video-link) |
 
 </div>
 
